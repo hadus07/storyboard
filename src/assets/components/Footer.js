@@ -6,7 +6,7 @@ export default class Footer extends React.Component {
             <div id="footer">
                 <div className="contactAbout">
                     <ul className="contact">
-                        <h2>Contact</h2>
+                        <h3>Contact</h3>
                         <li className="contactItem">+8210-7569-5653</li>
                         <li className="contactItem">hadus_bi@mail.ru</li>
                         <li className="contactItem">Seoul Gwangjin-gu Gunja-dong</li>
@@ -15,7 +15,7 @@ export default class Footer extends React.Component {
                     <div className="bar"></div>
 
                     <div className="about">
-                        <h2>About</h2>
+                        <h3>About</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia voluptas nulla porro! Earum vitae esse illo animi, consequatur eum fugit. Quibusdam harum non consectetur eum recusandae quisquam nemo deserunt.</p>
                     </div>
 

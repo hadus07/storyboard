@@ -8,19 +8,13 @@ export default class Nav extends React.Component {
                     <a href="/">Storyboard</a>
                 </li>
                 <li className="navigationItem">
-                    <a href="#explore">Explore</a>                
-                </li>
-                <li className="navigationItem">
                     <a href="#categories">Categories</a>
                 </li>
                 <li className="navigationItem">
-                    <a href="#search">Search</a>
+                    <a href="#explore">Explore</a>                
                 </li>
                 <li className="navigationItem">
-                    <a href="#subscribe">Subscribe</a>
-                </li>
-                <li className="navigationItem">
-                    <a href="#">Contact & About</a>
+                    <a href="#footer">Contact & About</a>
                 </li>
             </ul>
         );
