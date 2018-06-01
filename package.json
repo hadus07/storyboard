@@ -1,18 +1,21 @@
 {
-  "name": "storyboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-quill": "^1.2.7",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
-  },
+  "name": "reactexpressboilerplate",
+  "version": "1.0.0",
+  "description": "Starter pack for ReactJS and Express",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Ibrohim Bahromov",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }
