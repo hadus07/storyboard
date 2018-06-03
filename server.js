@@ -1,17 +1,21 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.get('/src', (req, res) => {
-    const data = [
-        {id: 1, name: 'Ibrohim', age: 22},
-        {id: 2, name: 'Danny', age: 21},
-        {id: 3, name: 'Jam', age: 20}
-    ];
+const urlencodedParser =  bodyParser.urlencoded({ extended: false })
+const jsonParser = bodyParser.json();
 
-     res.json(data);
+app.post('/login', jsonParser, (req, res) => {
+    console.log(req.body.username);
+    res.json('yes');
 });
 
-const port = 3001;
+app.post('/signup', jsonParser, (req, res) => {
+    console.log(req.body.username);
+    res.json('yes');
+});
+
+const port = 3003;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

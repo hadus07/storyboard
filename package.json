@@ -13,6 +13,7 @@
   "author": "Ibrohim Bahromov",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
     "express": "^4.16.3"
   },

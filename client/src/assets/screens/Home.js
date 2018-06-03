@@ -8,75 +8,25 @@ import Categories from '../components/Categories';
 import Footer from '../components/Footer';
 import LinkToEditor from '../components/LinkToEditor';
 
+import Login from '../components/Login';
+import Signup from '../components/Signup';
+
 export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            case: 'signup',
-        };
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleSignup = this.handleSignup.bind(this);
-        this.handleConfirmClick = this.handleConfirmClick.bind(this);
-    }
-
-    handleLogin() {
-        this.setState({
             case: 'login',
-        });
+            loggedIn: 'no',
+            animation: '',
+        };
     }
 
-    handleSignup() {
-        this.setState({
-            case: 'signup',
-        });
+    handleSubmit() {
+        
     }
-
-    handleConfirmClick() {
-        this.setState({
-            case: 'editor'
-        });
-    }
-
 
     render() {
-
-        const renderee = () => {
-            if(this.state.case === 'signup') {
-                return (
-                    <div id="loginCont">
-                        <h1 className="logoName">Story<span>Board</span></h1>
-
-                        <form className="form" name="login" action="">
-                            <input type="text" name="username" className="inputBox" placeholder="username" />
-                            <input type="password" name="password" className="inputBox" placeholder="password" />
-                            <input type="button" value="Login" className="button" onClick={this.handleConfirmClick}/>
-                        </form>
-
-                        <p>Don't have an account yet? <button id="signupbtn" onClick={this.handleLogin}>Sign Up</button></p>
-                    </div>
-                );
-            }else if(this.state.case === 'login') {
-                return (
-                    <div id="signupCont">
-                        <h1 className="logoName">Story<span>Board</span></h1>
-
-                        <form className="form" action="" name="signup">
-                            <input type="text" name="fullname" className="inputBox" placeholder='fullname'/>
-                            <input type="text" name="username" className="inputBox" placeholder="username"/>
-                            <input type="text" name="email" className="inputBox" placeholder="email" />
-                            <input type="password" name="password1" className="inputBox" placeholder="password"/>
-                            <input type="password" name="password2" className="inputBox" placeholder="password"/>
-                            <input type="button" value="Signup" className="button" onClick={this.handleConfirmClick}/>
-                        </form>
-
-                        <p>Don't have an account yet? <button id="loginbtn" onClick={this.handleSignup}>Log in</button></p>
-                    </div>
-                );
-            }else if(this.state.case === 'editor') {
-                return <Link style={{textDecoration: 'none'}} to="/editor"><LinkToEditor /></Link>
-            }
-        }
 
         return (
             <div id="home">
@@ -88,7 +38,39 @@ export default class Home extends React.Component {
 
                 <div className="introLogin">
                     <Intro />
-                    {renderee()}
+                    {(() => {
+                        if(this.state.loggedIn === 'yes') {
+                            return  <Link to="/editor"><LinkToEditor /></Link>
+                        }else if (this.state.loggedIn === 'no') {
+                            return (
+                                <div id="loginCont" style={{animationName: this.state.animation}}>
+                                    <h1 className="logoName">Story<span>Board</span></h1>
+
+                                    {(() => {
+                                        if(this.state.case === 'login') return <Login onClick={this.handleSubmit} />;
+
+                                        else if(this.state.case === 'signup') return <Signup onClick={this.handleSubmit} />;
+                                    })()}
+
+                                    <p>Don't have an account yet?
+                                        <button id="signupbtn" onClick={() => {
+                                            if(this.state.case === 'login') this.setState({case: 'signup'});
+                                            if(this.state.case === 'signup') this.setState({case: 'login'});
+                                            this.setState({animation: 'slidein'});
+                                            setTimeout(() => this.setState({animation: ''}), 500);
+                                        }}>
+
+                                            {(() => {
+                                                if(this.state.case === 'login') return 'Sign up';
+                                                else if(this.state.case === 'signup') return 'Log in';
+                                            })()}
+
+                                        </button>
+                                    </p>
+                                </div>
+                            );
+                        }
+                    })()}
                 </div>
 
                 <Categories />
