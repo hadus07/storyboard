@@ -1,19 +1,64 @@
-// import React from 'react';
+import React from 'react';
 
-// export default class Login extends React.Component {
-//     render() {
-//         return (
-//             <div id="loginCont">
-//                 <h1 className="logoName">Story<span>Board</span></h1>
+export default class Login extends React.Component {
 
-//                 <form className="form" action="#">
-//                     <input type="text" name="usernme" className="inputBox" placeholder="username" />
-//                     <input type="password" name="password" className="inputBox" placeholder="password" />
-//                     <input type="button" value="Login" className="button" onClick={this.props.onClick}/>
-//                 </form>
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+        };
+    }
 
-//                 <p>Don't have an account yet? <button onClick={this.props.onClick}>Sign Up</button></p>
-//             </div>
-//         );
-//     }
-// }
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const data = {
+            username: this.state.username,
+            password: this.state.password,
+        };
+
+        fetch('/login', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(res => console.log(res));
+    }
+
+    render() {
+        return (
+            <form className="form" onSubmit={this.handleSubmit.bind(this)}>
+                <input 
+                    name="username" 
+                    className="inputBox" 
+                    type="text" 
+                    placeholder="username" 
+                    value={this.state.username}
+                    onChange={(e) => this.setState({username: e.target.value})}
+                    autoComplete=""
+                    required
+                />
+                <input 
+                    name="password" 
+                    className="inputBox" 
+                    type="password" 
+                    placeholder="password" 
+                    value={this.state.password}
+                    onChange={(e) => this.setState({password: e.target.value})}
+                    autoComplete="current-password"
+                    required 
+                />
+                <input 
+                    type="submit" 
+                    className="button" 
+                    value="Login" 
+                    onClick={this.props.onClick} 
+                />
+            </form>
+        );
+    }
+}
