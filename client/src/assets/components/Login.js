@@ -26,7 +26,9 @@ export default class Login extends React.Component {
             }
         })
             .then(res => res.json())
-            .then(res => console.log(res));
+            .then(res => {
+                this.props.onClick(res);
+            });
     }
 
     render() {
@@ -55,8 +57,7 @@ export default class Login extends React.Component {
                 <input 
                     type="submit" 
                     className="button" 
-                    value="Login" 
-                    onClick={this.props.onClick} 
+                    value="Login"
                 />
             </form>
         );
