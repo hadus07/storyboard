@@ -33,8 +33,9 @@ export default class Signup extends React.Component {
             }
         })
             .then(res => res.json())
-            .then(res => alert(res))
-            .catch(err => console.log(err));
+            .then(res => {
+                this.props.onClick(res); 
+            });
     }
 
     render() {
@@ -93,8 +94,7 @@ export default class Signup extends React.Component {
                 <input 
                     type="submit" 
                     value="Signup" 
-                    className="button" 
-                    onClick={this.props.onClick}
+                    className="button"
                 />
             </form>
         );

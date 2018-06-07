@@ -8,14 +8,16 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "yarn": "yarn && cd client && yarn"
+    "yarn": "concurrently \"yarn\" \"cd client && yarn\""
   },
   "author": "Ibrohim Bahromov",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10",
+    "mongojs": "^2.6.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"

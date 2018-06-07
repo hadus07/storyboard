@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 
 import Home from './assets/screens/Home';
 import TextEditor from './assets/screens/TextEditor';
+import Dashboard from './assets/screens/Dashboard';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
 
 					<Route exact path="/" component={Home} />
 					<Route path="/editor" component={TextEditor} />
+					<Route path="/dashboard" component={Dashboard} />
 				</div>
 			</Router>
 		);

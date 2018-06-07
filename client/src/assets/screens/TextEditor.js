@@ -5,8 +5,21 @@ import 'react-quill/dist/quill.snow.css';
 class TextEditor extends React.Component {
     constructor (props) {
         super(props)
-        this.state = { editorHtml: '', theme: 'snow' }
+        this.state = {
+            editorHtml: '',
+            loggedIn: localStorage.getItem('loggedIn') || 'no',
+            fullname: 'Anonymus',
+            username: 'wizard'
+        }
         this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
+        this.setState({
+            loggedIn: localStorage.getItem('loggedIn'),
+            fullname: localStorage.getItem('fullname'),
+            username: localStorage.getItem('username')
+        });
     }
 
     handleChange (html) {
@@ -14,62 +27,84 @@ class TextEditor extends React.Component {
     }
 
     render() {
-        return (
-            <div id="editor">
-                <ReactQuill 
-                    theme={this.state.theme}
-                    onChange={this.handleChange}
-                    value={this.state.editorHtml}
-                    modules={TextEditor.modules}
-                    formats={TextEditor.formats}
-                    bounds={'.quill'}
-                    placeholder='Write your story here...'
-                />
-                <form action="">
-                    <div  className="userinfo">
-                        <h3>User Name</h3>
-                        <p>username</p>
-                    </div>
-                    <select name="" className="inputBox">
-                        
-                        <option value="science" >Science fiction</option>
-                        <option value="satire" >Satire</option>
-                        <option value="drama" >Drama</option>
-                        <option value="action" >Action and Adventure</option>
-                        <option value="romance" >Romance</option>
-                        <option value="mystery" >Mystery</option>
-                        <option value="horror" >Horror</option>
-                        <option value="self" >Self help</option>
-                        <option value="health" >Health</option>
-                        <option value="guide" >Guide</option>
-                        <option value="travel" >Travel</option>
-                        <option value="children" >Children's</option>
-                        <option value="religion" >Religion, Spirituality & New Age</option>
-                        <option value="science" >Science</option>
-                        <option value="history" >History</option>
-                        <option value="math" >Math</option>
-                        <option value="anthology" >Anthology</option>
-                        <option value="poetry" >Poetry</option>
-                        <option value="encyclopedias" >Encyclopedias</option>
-                        <option value="dictionaries" >Dictionaries</option>
-                        <option value="comics" >Comics</option>
-                        <option value="art" >Art</option>
-                        <option value="cookbooks" >Cookbooks</option>
-                        <option value="diaries" >Diaries</option>
-                        <option value="journals" >Journals</option>
-                        <option value="prayer" >Prayer books</option>
-                        <option value="series" >Series</option>
-                        <option value="trilogy" >Trilogy</option>
-                        <option value="biographies" >Biographies</option>
-                        <option value="autobiographies" >Autobiographies</option>
-                        <option value="fantasy" >Fantasy</option>
+        return (() => {
+            
+            if(this.state.loggedIn === 'yes') {
+                return (
+                    <div id="editor">
+                        <ReactQuill 
+                            theme={this.state.theme}
+                            onChange={this.handleChange}
+                            value={this.state.editorHtml}
+                            modules={TextEditor.modules}
+                            formats={TextEditor.formats}
+                            bounds={'.quill'}
+                            placeholder='Write your story here...'
+                        />
+                        <form action="">
+                            <div  className="userinfo">
+                                <h4>{this.state.fullname}</h4>
+                                <h5>{this.state.username}</h5>
+                            </div>
+                            <select name="" className="inputBox">
+                                
+                                <option value="science" >Science fiction</option>
+                                <option value="satire" >Satire</option>
+                                <option value="drama" >Drama</option>
+                                <option value="action" >Action and Adventure</option>
+                                <option value="romance" >Romance</option>
+                                <option value="mystery" >Mystery</option>
+                                <option value="horror" >Horror</option>
+                                <option value="self" >Self help</option>
+                                <option value="health" >Health</option>
+                                <option value="guide" >Guide</option>
+                                <option value="travel" >Travel</option>
+                                <option value="children" >Children's</option>
+                                <option value="religion" >Religion, Spirituality & New Age</option>
+                                <option value="science" >Science</option>
+                                <option value="history" >History</option>
+                                <option value="math" >Math</option>
+                                <option value="anthology" >Anthology</option>
+                                <option value="poetry" >Poetry</option>
+                                <option value="encyclopedias" >Encyclopedias</option>
+                                <option value="dictionaries" >Dictionaries</option>
+                                <option value="comics" >Comics</option>
+                                <option value="art" >Art</option>
+                                <option value="cookbooks" >Cookbooks</option>
+                                <option value="diaries" >Diaries</option>
+                                <option value="journals" >Journals</option>
+                                <option value="prayer" >Prayer books</option>
+                                <option value="series" >Series</option>
+                                <option value="trilogy" >Trilogy</option>
+                                <option value="biographies" >Biographies</option>
+                                <option value="autobiographies" >Autobiographies</option>
+                                <option value="fantasy" >Fantasy</option>
 
-                    </select>
-                    <input type="text" name="story-name" className="story-name inputBox" placeholder="Story name..." />
-                    <input type="button" value="Submit" className="button"/>
-                </form>
-            </div>
-        );
+                            </select>
+                            <input type="text" name="story-name" className="story-name inputBox" placeholder="Story name..." />
+                            <input type="button" value="Submit" className="button"/>
+                        </form>
+                    </div>
+                );
+            }else if (this.state.loggedIn === 'no') {
+                return (
+                    <div
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: 'black',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            color: 'white'
+                        }}
+                    ><h1>You must be logged in to use this feature!</h1></div>
+                );
+            }
+
+        })();
     }
 }
 
