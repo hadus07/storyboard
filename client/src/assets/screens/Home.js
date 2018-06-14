@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import Nav from '../components/Nav';
 import Intro from '../components/Intro';
 import Explore from '../components/Explore';
+import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
 import LinkToEditor from '../components/LinkToEditor';
 
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+
+import Popup from './Popup';
 
 export default class Home extends React.Component {
 
@@ -21,8 +24,7 @@ export default class Home extends React.Component {
             animation: '',
             message: '',
             fullname: localStorage.getItem('fullname'),
-            username: localStorage.getItem('username')
-
+            username: localStorage.getItem('username'),
         };
     }
 
@@ -39,6 +41,7 @@ export default class Home extends React.Component {
         setTimeout(() => {
             localStorage.setItem('loggedIn', 'no')
         }, 1000*60*60*24);
+
     }
 
     handleAuth(res) {
@@ -52,6 +55,8 @@ export default class Home extends React.Component {
             fullname: res.fullname,
             username: res.username,
         });
+
+        setTimeout(() => this.setState({message: ''}), 3000);
     }
 
     render() {
@@ -74,10 +79,12 @@ export default class Home extends React.Component {
 
                                     <p className="errorMsg">{this.state.message}</p>
 
-                                    <div className="userCont">
-                                        <h1>{this.state.fullname}</h1>
-                                        <h5>{this.state.username}</h5>
-                                    </div>
+                                    <Link to="/dashboard">
+                                        <div className="userCont">
+                                            <img src={require('../images/profile.png')} alt="Icon"/>
+                                            <h2>{this.state.fullname}</h2>
+                                        </div>
+                                    </Link>
 
                                     <Link to="/editor"><LinkToEditor /></Link>
 
@@ -100,7 +107,13 @@ export default class Home extends React.Component {
                                         else if(this.state.case === 'signup') return <Signup onClick={this.handleAuth.bind(this)} />;
                                     })()}
 
-                                    <p>Don't have an account yet?
+                                    <p>
+                                        
+                                        {(() => {
+                                            if(this.state.case === 'login') return 'Don\'t have an account yet? ';
+                                            else if(this.state.case === 'signup') return 'Already have an account? ';
+                                        })()}
+
                                         <button id="signupbtn" onClick={() => {
                                             if(this.state.case === 'login') this.setState({case: 'signup'});
                                             if(this.state.case === 'signup') this.setState({case: 'login'});
@@ -114,6 +127,7 @@ export default class Home extends React.Component {
                                             })()}
 
                                         </button>
+
                                     </p>
                                 </div>
                             );
@@ -121,16 +135,24 @@ export default class Home extends React.Component {
                     })()}
                 </div>
 
-                <Categories />
-
-                <div id="search">
-                    <form action="">
-                        <input type="text" className="inputBox" placeholder="Search for stories" />
-                        <input type="button" className="button" value="Search"/>
-                    </form>
-                </div>
+                <Search />
+                
+                {(() => {
+                    if(this.state.display === 'yes') {
+                        return (
+                            <Popup 
+                                story={this.state.popupStory}
+                                onClick={() => {
+                                    this.setState({display: 'no'});
+                                }}
+                            />
+                        );
+                    }
+                })()}
 
                 <Explore />
+
+                <Categories />
 
                 <div id="subscribe">
                     <form action="">

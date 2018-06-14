@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
 
                     <div className="about">
                         <h3>About</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia voluptas nulla porro! Earum vitae esse illo animi, consequatur eum fugit. Quibusdam harum non consectetur eum recusandae quisquam nemo deserunt.</p>
+                        <p>StoryBoard is one of the best online story writing community in the world. Create your stories without warrying about the storage and promotion. Feel free to reply us if you have any questions</p>
                     </div>
 
                     <div className="shareButtons">

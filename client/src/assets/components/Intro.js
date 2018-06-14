@@ -1,13 +1,40 @@
 import React from 'react';
 
 export default class Intro extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            author: '',
+            quote: '',
+        };
+    }
+
+    componentDidMount() {
+        fetch('/quotes', {
+            method: 'POST',
+            body: JSON.stringify({}),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({
+                author: res.author,
+                quote: res.quote
+            });
+        })
+        .catch(err => console.log(err))
+    }
+
     render() {
         return (
             <div className="intro">
                 <img src={require('../images/ibrohim.png')} alt="ibrohim" className="me"/>
                 <dev className="introText">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, molestiae perspiciatis, rem ex architecto, facere quibusdam accusantium accusamus ipsa nostrum recusandae. Neque, minus possimus saepe nemo aliquam illum ut ipsa?</p>
-                    <h3>Ibrohim Bahromov</h3>
+                    <p>{this.state.quote}</p>
+                    <h3>{this.state.author}</h3>
                 </dev>
             </div>
         );

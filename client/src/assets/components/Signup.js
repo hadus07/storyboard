@@ -35,7 +35,8 @@ export default class Signup extends React.Component {
             .then(res => res.json())
             .then(res => {
                 this.props.onClick(res); 
-            });
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
