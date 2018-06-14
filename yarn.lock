@@ -176,8 +176,8 @@ braces@^2.3.0, braces@^2.3.1:
     to-regex "^3.0.1"
 
 bson@~1.0.4:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.6.tgz#444db59ddd4c24f0cb063aabdc5c8c7b0ceca912"
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.9.tgz#12319f8323b1254739b7c6bef8d3e89ae05a2f57"
 
 buffer-shims@~1.0.0:
   version "1.0.0"
@@ -1127,13 +1127,6 @@ mongodb-core@2.1.19:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb-core@3.0.9:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.0.9.tgz#8327410c88811013fb3e4ac7c4c670f324349be1"
-  dependencies:
-    bson "~1.0.4"
-    require_optional "^1.0.1"
-
 mongodb@^2.2.31:
   version "2.2.35"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.35.tgz#cd1b5af8a9463e3f9a787fa5b3d05565579730f9"
@@ -1141,12 +1134,6 @@ mongodb@^2.2.31:
     es6-promise "3.2.1"
     mongodb-core "2.1.19"
     readable-stream "2.2.7"
-
-mongodb@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.0.10.tgz#f948cb9595adcbfcad7444f6b24a040b653b23e8"
-  dependencies:
-    mongodb-core "3.0.9"
 
 mongojs@^2.6.0:
   version "2.6.0"
@@ -1212,6 +1199,10 @@ node-pre-gyp@^0.10.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+nodemailer@^4.6.6:
+  version "4.6.6"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.6.tgz#9ba4be51ffa5da2b2dbc392b87e30bff7166e139"
 
 nodemon@^1.17.5:
   version "1.17.5"
@@ -1526,7 +1517,7 @@ repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
-require_optional@^1.0.1, require_optional@~1.0.0:
+require_optional@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require_optional/-/require_optional-1.0.1.tgz#4cf35a4247f64ca3df8c2ef208cc494b1ca8fc2e"
   dependencies:
