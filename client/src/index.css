@@ -656,6 +656,13 @@ input {
   background-color: white;
   box-shadow: 2px 2px 15px black;
   position: relative;
+  animation: storySq 0.4s cubic-bezier(1, 1, 0.5, 1.1);
+}
+
+@keyframes storySq {
+  from {
+    transform: scale(0);
+  }
 }
 
 .storySq:hover {
