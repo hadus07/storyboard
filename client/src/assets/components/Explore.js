@@ -12,13 +12,7 @@ export default class Explore extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/randomStory', {
-            method: 'POST',
-            body: JSON.stringify({}),
-            headers: {
-                'Content-type': 'application/json'
-            }
-        })
+        fetch('/randomStory')
         .then(res => res.json())
         .then(res => {
             this.setState({
