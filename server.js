@@ -243,7 +243,7 @@ app.post('/search', jsonParser, (req, res) => {
             let n = 0;
             for(let i=0; i<doc.length; i++) {
                 for(let j=0; j<doc[i].stories.length; j++) {
-                    if(doc[i].stories[j].storyname.slice(0,3) === req.body.query) {
+                    if(doc[i].stories[j].storyname.slice(0,3).toLowerCase() === req.body.query) {
                         stories[n] = doc[i].stories[j];
                         n++;
                     }
