@@ -193,7 +193,7 @@ app.post('/deleteStory', jsonParser, (req, res) => {
 //     console.log(doc);
 // });
 
-app.post('/quotes', jsonParser, (req, res) => {
+app.get('/quotes', jsonParser, (req, res) => {
     db.quotes.find({}, (err, doc) => {
         let rand = Math.floor(Math.random() * doc[0]['quotes'].length);
 
@@ -206,24 +206,22 @@ app.post('/quotes', jsonParser, (req, res) => {
     });
 });
 
-app.post('/randomStory', jsonParser, (req, res) => {
-   db.users.find({}, (err, doc) => {
-        let rand = Math.floor(Math.random() * doc.length);
-        let data = doc[rand];
-        let l = data.stories.length;
-        let rand2 = Math.floor(Math.random() * l);
-
-        let leavingData = doc[rand].stories[rand2];
-
-        res.json({
-            content: leavingData.content,
-            storyname: leavingData.storyname,
-            author: doc[rand].fullname,
-        });
-
-   });
+app.get('/randomStory', jsonParser, (req, res) => {
+    db.users.find({}, (err, doc) => {
+        if(doc.length > 0) {
+            let rand = Math.floor(Math.random() * doc.length);
+            let stories = doc[rand].stories;
+            if(stories && stories.length > 0) {
+                let rand2 = Math.floor(Math.random() * stories.length);
+                res.send({
+                    content: stories[rand2].content,
+                    storyname: stories[rand2].storyname,
+                    author: doc[rand].fullname
+                });
+            }
+        }
+    });
 });
-
 
 // Search handle
 app.post('/search', jsonParser, (req, res) => {

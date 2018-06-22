@@ -11,13 +11,7 @@ export default class Intro extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/quotes', {
-            method: 'POST',
-            body: JSON.stringify({}),
-            headers: {
-                'Content-type': 'application/json'
-            }
-        })
+        fetch('/quotes')
         .then(res => res.json())
         .then(res => {
             this.setState({

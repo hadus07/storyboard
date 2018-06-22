@@ -7,7 +7,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"mongod\" \"npm run server\" \"npm run client\"",
     "yarn": "concurrently \"yarn\" \"cd client && yarn\""
   },
   "author": "Ibrohim Bahromov",
