@@ -246,7 +246,7 @@ input {
   overflow: hidden;
 }
 
-.exploreCont img {
+.exploreCont > img {
   width: 200px;
   height: 300px;
   margin-right: -100px;

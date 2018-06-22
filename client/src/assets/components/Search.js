@@ -16,7 +16,7 @@ export default class Search extends React.Component {
         e.preventDefault();
         fetch('/search', {
             method: 'POST',
-            body: JSON.stringify({query: this.state.query.slice(0, 3)}),
+            body: JSON.stringify({query: this.state.query.slice(0, 3).toLowerCase()}),
             headers: {
                 'Content-type': 'application/json'
             }
